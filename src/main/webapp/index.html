@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" ng-app="itemsApp">
+<head>
+    <meta charset="utf-8">
+    <title>REST with AngularJS</title>
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.4/css/bootstrap.css">
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.4/css/bootstrap-theme.css">
+    <style>
+        .indented {
+            padding-top: 50px;
+        }
+
+        .inlined {
+            display: inline-block;
+            padding-top: 10px;
+            padding-bottom: 20px;
+        }
+
+        .input-field {
+            padding-right: 50px;
+        }
+
+        .radio-btn {
+            margin-left: 10px !important;
+            margin-right: 5px !important;
+        }
+
+        .submit-btn {
+            margin-bottom: 2px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body class="indented">
+
+<div class="container" ng-controller="ItemCtrl">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">Items App</h4>
+        </div>
+        <div class="panel-body">
+            <div class="inlined">
+                <form>
+                    <input class="input-field" type="text" ng-model="itemForm.inputName"
+                           ng-init="itemForm.inputName='New item'"/>
+                    <input class="radio-btn" type="radio" ng-model="itemForm.inputFlag"
+                           value="true">True
+                    <input class="radio-btn" type="radio" ng-model="itemForm.inputFlag"
+                           value="false"
+                           ng-checked="true">False
+                    <a class="submit-btn">
+                        <button type="button"
+                                class="btn btn-primary btn-xs"
+                                ng-click="addItem()">Add Item
+                        </button>
+                    </a>
+                </form>
+            </div>
+            <table class="table table-hover table-striped">
+                <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Flag</th>
+                <th>Delete</th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in itemzzz">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>
+                        <span class="glyphicon glyphicon-chevron-{{item.flag ? 'up' :'down'}}"></span>
+                    </td>
+                    <td>
+                        <button type="button"
+                                class="btn btn-primary btn-xs btn-danger"
+                                ng-click="deleteItem(item)">Delete
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <footer class="text-muted">
+        Powered by <a href="http://ikolosov.com/">&copy; ikolosov</a>
+    </footer>
+</div>
+
+<script src="webjars/angularjs/1.4.0/angular.js"></script>
+<script src="webjars/angularjs/1.4.0/angular-resource.js"></script>
+<script src="webjars/angularjs/1.4.0/angular-route.js"></script>
+<script src="webjars/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.js"></script>
+
+<script src="scripts/app.js"></script>
+<script src="scripts/controller/item-ctrl.js"></script>
+<script src="scripts/service/item-service.js"></script>
+
+</body>
+</html>
